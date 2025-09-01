@@ -1,22 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Michael Hess</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- If you prefer external CSS, move everything inside <style> to style.css and keep this link -->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ===== Base / Background ===== */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('images/Lightning.JPG') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        /* ===== Blur overlay (toggles on when #about is in view) ===== */
+        .blur-overlay {
+            position: fixed; inset: 0; pointer-events: none;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            background: rgba(12,16,24,0);
+            transition: backdrop-filter .6s ease, -webkit-backdrop-filter .6s ease, background .6s ease;
+            z-index: 2; /* keep this under your foreground content */
+        }
+        .blur-overlay.active {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(12,16,24,.35);
+        }
+        /* Fallback if backdrop-filter is unsupported */
+        .no-backdrop .blur-overlay.active { background: rgba(12,16,24,.55); }
+
+        /* ===== Menu ===== */
+        .menu-container { position: absolute; top: 20px; right: 30px; z-index: 1000; }
+        .menu-btn {
+            background: transparent; color: #fff; border: none; padding: .7em 1.2em; font-size: 1.1em; border-radius: 4px; cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: background .2s, opacity .2s; opacity: 1;
+        }
+        .menu-btn:hover { background: rgba(34,34,34,0.3); opacity: .7; }
+        .dropdown-menu { display: none; position: absolute; right: 0; top: 110%; background: #fff; min-width: 160px; box-shadow: 0 2px 8px rgba(0,0,0,.15); border-radius: 6px; overflow: hidden; }
+        .dropdown-menu a { display: block; padding: .8em 1.2em; color: #222; text-decoration: none; transition: background .2s; }
+        .dropdown-menu a:hover { background: #f4f4f4; }
+
+        /* ===== Hero / Centerpiece ===== */
+        .centerpiece {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 100vh; height: 100vh; width: 100vw; position: relative; top: -7vh; left: 0; z-index: 10;
+        }
+        .name-block { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 500px; margin: 0 auto; }
+        .name-line { width: 60%; border: none; border-top: 2px solid #fff; margin: 18px 0; opacity: .7; }
+        .main-name {
+            color: #fff; font-size: 2.5em; font-weight: 700; margin: 0; letter-spacing: 2px;
+            text-shadow: 0 4px 16px rgba(0,0,0,.7), 0 1.5px 0 #222, 0 .5px 0 #222;
+            -webkit-box-reflect: below .15em linear-gradient(transparent, rgba(255,255,255,.05));
+        }
+        .brief-desc {
+            color: #fff; font-size: .95em; margin-top: 10px; text-align: center; opacity: .95;
+            text-shadow: 0 2px 8px rgba(0,0,0,.7), 0 1px 0 #222;
+            -webkit-box-reflect: below .1em linear-gradient(transparent, rgba(255,255,255,.04));
+            white-space: nowrap;
+        }
+
+        /* ===== Learn More prompt ===== */
+        .learn-more-container { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 100; text-decoration: none; }
+        .learn-more-text { font-size: 1.2em; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.5); margin-bottom: .2em; letter-spacing: 1px; }
+        .down-arrow { font-size: 2.2em; color: #fff; animation: bounce 1.2s infinite; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
+
+        /* ===== Generic sections ===== */
+        section.section { min-height: 100vh; display: grid; place-items: center; padding: 6rem 1.25rem 3rem; position: relative; }
+
+        /* ===== Bio card (foreground over the blur) ===== */
+        .bio-wrap { width: min(900px, 92vw); }
+        .bio-card {
+            background: rgba(20,24,34,.75); color: #fff; border: 1px solid rgba(255,255,255,.12);
+            border-radius: 22px; padding: clamp(1.25rem, 2.5vw, 2rem);
+            box-shadow: 0 10px 35px rgba(0,0,0,.35);
+            backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            position: relative; z-index: 3; /* sits above overlay */
+        }
+        .bio-card h2 { margin: 0 0 .25rem; font-size: clamp(1.6rem, 3.5vw, 2.25rem); }
+        .bio-card p { margin: .4rem 0 0; color: rgba(255,255,255,.9); }
+
+        /* Buttons (generic) */
+        button { padding: .5em 1em; font-size: 1em; border: none; border-radius: 4px; background: #007bff; color: #fff; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
 </head>
 <body>
+    <!-- Blur overlay: will turn on (blur) when the About section is in view -->
+    <div class="blur-overlay" id="blurOverlay" aria-hidden="true"></div>
+
     <!-- Menu Button -->
     <div class="menu-container">
         <button class="menu-btn" onclick="toggleMenu()">Menu &#9776;</button>
         <div class="dropdown-menu" id="dropdownMenu">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
         </div>
     </div>
-    <main class="centerpiece">
+
+    <!-- Hero / Top Section -->
+    <main class="centerpiece" id="home">
         <div class="name-block">
             <hr class="name-line" />
             <h1 class="main-name">Michael Hess</h1>
@@ -24,28 +115,112 @@
             <p class="brief-desc">WEB DEVELOPMENT | SOFTWARE ENGINEERING | CONTENT CREATION</p>
         </div>
     </main>
-    <!-- Learn More Prompt -->
-    <div class="learn-more-container">
+
+    <!-- Learn More (anchors down to the About section) -->
+    <a class="learn-more-container" href="#about" aria-label="Scroll to About">
         <span class="learn-more-text">Learn More</span>
         <span class="down-arrow">&#8595;</span>
-    </div>
+    </a>
+
+    <!-- About section (activates blur on scroll) -->
+    <section id="about" class="section" aria-label="About Me">
+        <div class="bio-wrap">
+                    <article class="bio-card">
+                        <img src="images/The Best Profile Pic.jpg" alt="Profile picture of Michael Hess" class="profile-pic" />
+                        <h2>About Me</h2>
+                        <p class="about-bio">
+                            Hi, I’m Michael Hess. I sit at the intersection of IT, operations, and software—where small improvements add up to big wins. By day, I manage dealership systems and vendors (vAuto, 1Micro, VinPoint, Reynolds), own local IT needs, and keep projects moving. I’ve helped cut vehicle check-in time by ~40% and negotiated vendor contracts to lower service costs by ~15%.
+                        </p>
+                        <p class="about-bio">
+                            I’m also a software engineering student focused on C/C++, Python, and front-end fundamentals (HTML/CSS/JS). I like building practical tools that reduce manual work, create visibility, and make teams faster. Clean UI, clear data, and measurable outcomes are my thing.
+                        </p>
+                        <p class="about-bio">
+                            On the creative side, I run a TikTok channel as a side gig for fun. I used to do TikTok content creation full‑time, which sharpened my storytelling, lighting, editing, and analytics chops. These days I keep it lightweight—short, actionable videos on IT fixes, workflow hacks, and behind‑the‑scenes ops, with the occasional 3D‑print/AutoCAD build for variety. It’s a creative outlet that keeps my communication sharp and lets me experiment with new tools while engaging a community that loves practical, no‑fluff tips.
+                        </p>
+                        <p class="about-bio">
+                            Outside of work, I’m a licensed pilot—aviation taught me to prioritize safety, clarity, and calm problem-solving under pressure. I’m exploring remote-friendly roles where I can combine technical skills, operations experience, and a service-first mindset to deliver results.
+                        </p>
+                        <div class="about-links" style="margin-top:2.2em;">
+                            <div class="about-links-heading">Links</div>
+                            <a href="https://www.linkedin.com/in/mike-hess-b53912117" class="about-link" target="_blank" rel="noopener"><img src="images/InBug-White.png" alt="Logo 2" class="about-link-logo" />LinkedIn</a>
+                            <a href="https://github.com/printthis556" class="about-link" target="_blank" rel="noopener"><img src="images/github-mark-white.png" alt="Logo 2" class="about-link-logo" />GitHub</a>
+                            <a href="https://www.tiktok.com/@printthis?is_from_webapp=1&sender_device=pc" class="about-link"><img src="images/TikTok-logo-CMYK-Stacked-white-simplified.png" alt="Logo 3" class="about-link-logo" />TikTok</a>
+                        </div>
+                    </article>
+        </div>
+    </section>
+
+    <!-- More sections (optional placeholders) -->
+    <section id="projects" class="section" aria-label="Projects">
+        <div class="bio-wrap">
+            <article class="bio-card">
+                <h2>Projects</h2>
+                <p>Showcase a few recent builds with links, screenshots, and a short description.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="certifications" class="section" aria-label="Certifications">
+        <div class="bio-wrap">
+            <article class="bio-card">
+                <h2>Certifications</h2>
+                <p>Pilot license, IT admin tools, cloud/platform badges—add your highlights here.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="section" aria-label="Contact">
+        <div class="bio-wrap">
+            <article class="bio-card">
+                <h2>Contact</h2>
+                <p>Email: print.this556@gmail.com • LinkedIn • GitHub • any preferred channels.</p>
+            </article>
+        </div>
+    </section>
+
     <script>
-    function toggleMenu() {
-        var menu = document.getElementById('dropdownMenu');
-        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-    }
-    // Optional: Close menu when clicking outside
-    window.onclick = function(event) {
-        if (!event.target.matches('.menu-btn')) {
-            var dropdowns = document.getElementsByClassName('dropdown-menu');
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.style.display === 'block') {
-                    openDropdown.style.display = 'none';
+        // === Menu toggle ===
+        function toggleMenu() {
+            var menu = document.getElementById('dropdownMenu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+        // Close menu on outside click
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                var dropdowns = document.getElementsByClassName('dropdown-menu');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
                 }
             }
-        }
-    }
+        });
+
+        // === Scroll → Blur logic ===
+        (function() {
+            var overlay = document.getElementById('blurOverlay');
+            var about = document.getElementById('about');
+
+            // Backdrop-filter support check for nicer fallback
+            try {
+                if (!CSS.supports('backdrop-filter', 'blur(1px)') && !CSS.supports('-webkit-backdrop-filter', 'blur(1px)')) {
+                    document.documentElement.classList.add('no-backdrop');
+                }
+            } catch (e) { /* older browsers */ }
+
+            // Toggle the blur overlay when the About section enters viewport
+            var io = new IntersectionObserver(function(entries) {
+                var entry = entries[0];
+                if (entry && entry.isIntersecting) {
+                    overlay.classList.add('active');
+                } else {
+                    overlay.classList.remove('active');
+                }
+            }, { threshold: 0.15 });
+
+            io.observe(about);
+        })();
     </script>
 </body>
 </html>

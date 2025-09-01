@@ -1,3 +1,79 @@
+/* About section bio paragraph spacing */
+.about-bio {
+    margin-top: 1.1em;
+    margin-bottom: 1.1em;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.7;
+}
+/* About section links heading */
+.about-links-heading {
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.4em;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+/* About section links and logos */
+.about-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    gap: 0.7rem;
+    width: 100%;
+}
+.about-link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08em;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.about-link-logo {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+    display: inline-block;
+    margin-right: 0.7em;
+    vertical-align: middle;
+}
+.about-link {
+    min-width: 220px;
+    justify-content: center;
+}
+.about-link:hover {
+    color: #aad8ff;
+}
+.about-link-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+/* Profile picture in About section */
+.profile-pic {
+    display: block;
+    margin: 0 auto 1.2rem auto;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
 /* Centerpiece Name Block Styles */
 .centerpiece {
     display: flex;
@@ -42,7 +118,7 @@
 }
 .brief-desc {
     color: #fff;
-    font-size: 1.1em;
+    font-size: 0.95em;
     margin-top: 10px;
     text-align: center;
     opacity: 0.95;
@@ -51,6 +127,7 @@
         0 1px 0 #222;
     /* Reflection effect */
     -webkit-box-reflect: below 0.1em linear-gradient(transparent, rgba(255,255,255,0.04));
+    white-space: nowrap;
 }
 /* Learn More Prompt Styles */
 .learn-more-container {
