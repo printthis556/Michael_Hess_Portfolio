@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Hess</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Menu Button -->
+    <div class="menu-container">
+        <button class="menu-btn" onclick="toggleMenu()">Menu &#9776;</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+    <main class="centerpiece">
+        <div class="name-block">
+            <hr class="name-line" />
+            <h1 class="main-name">Michael Hess</h1>
+            <hr class="name-line" />
+            <p class="brief-desc">WEB DEVELOPMENT | SOFTWARE ENGINEERING | CONTENT CREATION</p>
+        </div>
+    </main>
+    <!-- Learn More Prompt -->
+    <div class="learn-more-container">
+        <span class="learn-more-text">Learn More</span>
+        <span class="down-arrow">&#8595;</span>
+    </div>
+    <script>
+    function toggleMenu() {
+        var menu = document.getElementById('dropdownMenu');
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+    // Optional: Close menu when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.menu-btn')) {
+            var dropdowns = document.getElementsByClassName('dropdown-menu');
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    }
+    </script>
+</body>
+</html>
