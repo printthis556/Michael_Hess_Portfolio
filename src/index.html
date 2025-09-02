@@ -89,6 +89,75 @@
         /* Buttons (generic) */
         button { padding: .5em 1em; font-size: 1em; border: none; border-radius: 4px; background: #007bff; color: #fff; cursor: pointer; }
         button:hover { background: #0056b3; }
+
+        /* Add this to the <style> section */
+        .contact-links-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.7em;
+            margin-top: 1.2em;
+            margin-left: 0;
+            width: 100%;
+        }
+        .contact-links-left .about-link {
+            justify-content: flex-start;
+            min-width: 0;
+        }
+        .contact-links-left .about-link-logo {
+            margin-right: 0.7em;
+            align-self: flex-start;
+        }
+        /* Add to <style> section */
+        .contact-card-flex {
+          display: flex;
+          flex-direction: row;
+          gap: 2.5em;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+        .contact-card-left {
+          flex: 1 1 45%;
+          min-width: 200px;
+        }
+        .contact-card-right {
+          flex: 1 1 45%;
+          min-width: 220px;
+          max-width: 340px;
+        }
+        .contact-card-right form label {
+          display: block;
+          margin-bottom: 0.2em;
+          font-weight: 500;
+        }
+        .contact-card-right input,
+        .contact-card-right textarea {
+          border-radius: 5px;
+          border: 1px solid #bbb;
+          padding: 0.5em;
+          font-size: 1em;
+          margin-bottom: 0.5em;
+          background: #222a33;
+          color: #fff;
+        }
+        .contact-card-right input:focus,
+        .contact-card-right textarea:focus {
+          outline: 2px solid #007bff;
+          border-color: #007bff;
+        }
+        .contact-card-right button {
+          background: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          padding: 0.6em 1.2em;
+          font-size: 1em;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .contact-card-right button:hover {
+          background: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -163,19 +232,44 @@
     <section id="certifications" class="section" aria-label="Certifications">
         <div class="bio-wrap">
             <article class="bio-card">
-                <h2>Certifications</h2>
-                <p>Pilot license, IT admin tools, cloud/platform badges—add your highlights here.</p>
+                <h2>Certifications | Awards</h2>
+                    <p><img src="images/FAA 2 logo.png" alt="Pilot License" style="width:28px;height:28px;vertical-align:middle;margin-right:0.7em;">Pilot License (FAA)</p>
+                    <p><img src="images/NSLS LOGO.webp" alt="National Honor Society" style="width:28px;height:28px;vertical-align:middle;margin-right:0.7em;">National Society of Leadership and Success (NSLS)</p>
+                    <p><img src="images/github-mark-white.png" alt="Cloud Badge" style="width:28px;height:28px;vertical-align:middle;margin-right:0.7em;">Cloud Platform Badge</p>
             </article>
         </div>
     </section>
 
     <section id="contact" class="section" aria-label="Contact">
-        <div class="bio-wrap">
-            <article class="bio-card">
-                <h2>Contact</h2>
-                <p>Email: print.this556@gmail.com • LinkedIn • GitHub • any preferred channels.</p>
-            </article>
-        </div>
+                <div class="bio-wrap">
+                        <article class="bio-card contact-card-flex">
+                          <div class="contact-card-left">
+                            <h2>Contact</h2>
+                            <p>Email: print.this556@gmail.com</p>
+                            <div class="contact-links-left">
+                              <a href="https://www.linkedin.com/in/mike-hess-b53912117" class="about-link" target="_blank" rel="noopener">
+                                <img src="images/InBug-White.png" alt="LinkedIn Logo" class="about-link-logo" />LinkedIn
+                              </a>
+                              <a href="https://github.com/printthis556" class="about-link" target="_blank" rel="noopener">
+                                <img src="images/github-mark-white.png" alt="GitHub Logo" class="about-link-logo" />GitHub
+                              </a>
+                              <a href="https://www.tiktok.com/@printthis?is_from_webapp=1&sender_device=pc" class="about-link" target="_blank" rel="noopener">
+                                <img src="images/TikTok-logo-CMYK-Stacked-white-simplified.png" alt="TikTok Logo" class="about-link-logo" />TikTok
+                              </a>
+                            </div>
+                          </div>
+                          <div class="contact-card-right">
+                            <form method="POST" action="https://formsubmit.co/print.this556@gmail.com">
+                              <h3 style="margin-top:0;">Contact Me</h3>
+                              <label for="viewerEmail">Your Email</label>
+                              <input type="email" id="viewerEmail" name="email" required placeholder="you@email.com" style="width:100%;margin-bottom:0.7em;">
+                              <label for="viewerMsg">Message</label>
+                              <textarea id="viewerMsg" name="message" rows="4" required placeholder="Your message..." style="width:100%;margin-bottom:0.7em;"></textarea>
+                              <button type="submit" style="width:100%;">Send</button>
+                            </form>
+                          </div>
+                        </article>
+                </div>
     </section>
 
     <script>
@@ -197,10 +291,12 @@
             }
         });
 
-        // === Scroll → Blur logic ===
+        // === Scroll → Blur logic for multiple sections ===
         (function() {
             var overlay = document.getElementById('blurOverlay');
-            var about = document.getElementById('about');
+            // Select all .bio-card elements (the cards themselves)
+            var cards = document.querySelectorAll('.bio-card');
+            var visibleCards = 0;
 
             // Backdrop-filter support check for nicer fallback
             try {
@@ -209,18 +305,24 @@
                 }
             } catch (e) { /* older browsers */ }
 
-            // Toggle the blur overlay when the About section enters viewport
+            // IntersectionObserver callback
             var io = new IntersectionObserver(function(entries) {
-                var entry = entries[0];
-                if (entry && entry.isIntersecting) {
+                // Count how many observed cards are in view
+                visibleCards = entries.filter(function(entry) { return entry.isIntersecting; }).length;
+                if (visibleCards > 0) {
                     overlay.classList.add('active');
                 } else {
                     overlay.classList.remove('active');
                 }
             }, { threshold: 0.15 });
 
-            io.observe(about);
+            // Observe all cards
+            cards.forEach(function(card) {
+                io.observe(card);
+            });
         })();
+
+  // ...existing code...
     </script>
 </body>
 </html>
