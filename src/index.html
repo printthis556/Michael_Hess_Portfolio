@@ -42,9 +42,31 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: background .2s, opacity .2s; opacity: 1;
         }
         .menu-btn:hover { background: rgba(34,34,34,0.3); opacity: .7; }
-        .dropdown-menu { display: none; position: absolute; right: 0; top: 110%; background: #fff; min-width: 160px; box-shadow: 0 2px 8px rgba(0,0,0,.15); border-radius: 6px; overflow: hidden; }
-        .dropdown-menu a { display: block; padding: .8em 1.2em; color: #222; text-decoration: none; transition: background .2s; }
-        .dropdown-menu a:hover { background: #f4f4f4; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: rgba(20,24,34,0.97);
+            min-width: 180px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.35);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.12);
+            z-index: 1001;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: .9em 1.3em;
+            color: #fff;
+            text-decoration: none;
+            transition: background .2s, color .2s;
+            font-size: 1.08em;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(34, 48, 68, 0.92);
+            color: #aad8ff;
+        }
 
         /* ===== Hero / Centerpiece ===== */
         .centerpiece {
@@ -171,6 +193,7 @@
             <a href="#about">About Me</a>
             <a href="#projects">Projects</a>
             <a href="#certifications">Certifications</a>
+            <a href="#resume">Resume</a>
             <a href="#contact">Contact</a>
         </div>
     </div>
@@ -201,13 +224,12 @@
                             Hi, I’m Michael Hess. I sit at the intersection of IT, operations, and software—where small improvements add up to big wins. By day, I manage dealership systems and vendors (vAuto, 1Micro, VinPoint, Reynolds), own local IT needs, and keep projects moving. I’ve helped cut vehicle check-in time by ~40% and negotiated vendor contracts to lower service costs by ~15%.
                         </p>
                         <p class="about-bio">
-                            I’m also a software engineering student focused on C/C++, Python, and front-end fundamentals (HTML/CSS/JS). I like building practical tools that reduce manual work, create visibility, and make teams faster. Clean UI, clear data, and measurable outcomes are my thing.
+                            I’m also a software engineering student focused on C/C++, Python, and front-end fundamentals (HTML/CSS/JS). What excites me most is the creative side of programming—taking an idea from scratch and shaping it into something tangible. I enjoy designing clean, intuitive UIs, experimenting with ways to simplify workflows, and building tools that don’t just work, but feel satisfying to use. For me, coding is both problem-solving and creative expression, and I’m driven by turning that mix into solutions that make teams faster and outcomes measurable.
                         </p>
                         <p class="about-bio">
-                            On the creative side, I run a TikTok channel as a side gig for fun. I used to do TikTok content creation full‑time, which sharpened my storytelling, lighting, editing, and analytics chops. These days I keep it lightweight—short, actionable videos on IT fixes, workflow hacks, and behind‑the‑scenes ops, with the occasional 3D‑print/AutoCAD build for variety. It’s a creative outlet that keeps my communication sharp and lets me experiment with new tools while engaging a community that loves practical, no‑fluff tips.
-                        </p>
+On the creative side, I run a TikTok channel as a side gig for fun. I used to do TikTok content creation full-time, which sharpened my storytelling, lighting, editing, and analytics chops. These days my content revolves around 3D prints, AutoCAD builds, and eye-catching advertisements. Along the way, I’ve built international relationships and business partnerships that let me collaborate beyond borders. It’s a creative outlet that keeps my communication sharp, lets me experiment with new tools, and connects me with a global community that values practical, no-fluff content.                        </p>
                         <p class="about-bio">
-                            Outside of work, I’m a licensed pilot—aviation taught me to prioritize safety, clarity, and calm problem-solving under pressure. I’m exploring remote-friendly roles where I can combine technical skills, operations experience, and a service-first mindset to deliver results.
+                            Outside of work, I’m a licensed pilot—aviation taught me to prioritize safety, clarity, and calm problem-solving under pressure. Flying also sharpened my multitasking skills, balancing navigation, communication, and split-second decision-making in dynamic environments. I’m exploring remote-friendly roles where I can combine technical skills, operations experience, and a service-first mindset to deliver results.
                         </p>
                         <div class="about-links" style="margin-top:2.2em;">
                             <div class="about-links-heading">Links</div>
@@ -235,12 +257,22 @@
                 <h2>Certifications | Awards</h2>
                     <p><img src="images/FAA 2 logo.png" alt="Pilot License" style="width:28px;height:28px;vertical-align:middle;margin-right:0.7em;">Pilot License (FAA)</p>
                     <p><img src="images/NSLS LOGO.webp" alt="National Honor Society" style="width:28px;height:28px;vertical-align:middle;margin-right:0.7em;">National Society of Leadership and Success (NSLS)</p>
-                    <p><img src="images/github-mark-white.png" alt="Cloud Badge" style="width:28px;height:28px;vertical-align:middle;margin-right:0.7em;">Cloud Platform Badge</p>
             </article>
         </div>
     </section>
 
-    <section id="contact" class="section" aria-label="Contact">
+        <!-- Resume Upload Section -->
+            <section id="resume" class="section" aria-label="Resume">
+                <div class="bio-wrap">
+                    <article class="bio-card">
+                        <h2 style="text-align:center;margin-bottom:1.5em;">Resume</h2>
+                        <div style="display:flex;justify-content:center;align-items:center;min-height:300px;">
+                                <img src="images/Remote Resume.png" alt="Resume Photo" style="max-width:500px;width:100%;height:auto;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,0.18);">
+                        </div>
+                    </article>
+                </div>
+            </section>
+        <section id="contact" class="section" aria-label="Contact">
                 <div class="bio-wrap">
                         <article class="bio-card contact-card-flex">
                           <div class="contact-card-left">
