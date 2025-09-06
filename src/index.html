@@ -7,6 +7,17 @@
     <!-- If you prefer external CSS, move everything inside <style> to style.css and keep this link -->
     <link rel="stylesheet" href="style.css" />
     <style>
+        /* Extra spacing between About and Projects sections */
+        #about.section {
+            margin-bottom: 6em;
+        }
+        /* Even vertical spacing between card sections */
+        section.section {
+            margin-bottom: 4.5em;
+        }
+        section.section:last-of-type {
+            margin-bottom: 0;
+        }
         .project-desc-text {
             font-size: 0.80em;
         }
@@ -410,7 +421,6 @@ On the creative side, I run a TikTok channel as a side gig for fun. I used to do
             var overlay = document.getElementById('blurOverlay');
             var learnMore = document.querySelector('.learn-more-container');
             var cards = document.querySelectorAll('.bio-card');
-            var visibleCards = 0;
 
             // Backdrop-filter support check for nicer fallback
             try {
@@ -421,15 +431,17 @@ On the creative side, I run a TikTok channel as a side gig for fun. I used to do
 
             // IntersectionObserver callback
             var io = new IntersectionObserver(function(entries) {
-                visibleCards = entries.filter(function(entry) { return entry.isIntersecting; }).length;
-                if (visibleCards > 0) {
+                var anyCardVisible = entries.some(function(entry) {
+                    return entry.intersectionRatio > 0.3;
+                });
+                if (anyCardVisible) {
                     overlay.classList.add('active');
                     if (learnMore) learnMore.classList.add('hide-learn-more');
                 } else {
                     overlay.classList.remove('active');
                     if (learnMore) learnMore.classList.remove('hide-learn-more');
                 }
-            }, { threshold: 0.15 });
+            }, { threshold: [0, 0.3, 1] });
 
             // Observe all cards
             cards.forEach(function(card) {
