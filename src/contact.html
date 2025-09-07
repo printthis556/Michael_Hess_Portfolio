@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preload" as="image" href="images/Lightning background (1)-optimized.webp" />
+    <link rel="preload" as="image" href="images/Lightning background (1)-optimized.webp" />
+    <link rel="preload" as="image" href="images/Lightning.JPG" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Michael Hess Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .dropdown-menu a:hover {
+            background: rgba(34, 48, 68, 0.92);
+            color: #aad8ff;
+        }
+        .dropdown-menu a {
+            color: #fff !important;
+        }
+        .dropdown-menu {
+            background: rgba(20,24,34,0.97);
+            min-width: 180px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.35);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.12);
+            z-index: 1001;
+        }
+        body {
+            background: url('images/Lightning background.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .blur-bg {
+            position: fixed; inset: 0; z-index: 0;
+            backdrop-filter: blur(12px);
+            body {
+                background: url('images/Lightning background (1)-optimized.webp') no-repeat center center fixed;
+                background-size: cover;
+        .menu-container { position: absolute; top: 20px; right: 30px; z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div class="blur-bg"></div>
+    <div class="menu-container">
+        <button class="menu-btn" onclick="toggleMenu()">Menu &#9776;</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="certification.html">Certifications | Awards</a>
+            <a href="resume.html">Resume</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <main style="position:relative;z-index:1;">
+        <h1 style="color:#fff;text-align:center;margin-top:5em;">Contact</h1>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2.5em;margin-top:3em;">
+            <!-- Card 1: Email and Links -->
+            <div style="background:rgba(20,24,34,0.82);border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.18);border:1.5px solid rgba(170,216,255,0.13);padding:2em 2.5em;max-width:420px;width:100%;display:flex;flex-direction:column;align-items:center;">
+                <span style="color:#fff;font-size:1.15em;font-weight:bold;margin-bottom:0.7em;">Email: print.this556@gmail.com</span>
+                <div style="display:flex;flex-direction:column;gap:1em;width:100%;align-items:center;">
+                    <a href="https://www.linkedin.com/in/mike-hess-b53912117" target="_blank" rel="noopener" style="color:#aad8ff;font-size:1.08em;text-decoration:none;display:flex;align-items:center;gap:0.6em;">
+                        <img src="images/InBug-White.png" alt="LinkedIn Logo" style="width:28px;height:28px;vertical-align:middle;" />LinkedIn
+                    </a>
+                    <a href="https://github.com/printthis556" target="_blank" rel="noopener" style="color:#aad8ff;font-size:1.08em;text-decoration:none;display:flex;align-items:center;gap:0.6em;">
+                        <img src="images/github-mark-white.png" alt="GitHub Logo" style="width:28px;height:28px;vertical-align:middle;" />GitHub
+                    </a>
+                    <a href="https://www.tiktok.com/@printthis?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" style="color:#aad8ff;font-size:1.08em;text-decoration:none;display:flex;align-items:center;gap:0.6em;">
+                        <img src="images/TikTok-logo-CMYK-Stacked-white-simplified.png" alt="TikTok Logo" style="width:28px;height:28px;vertical-align:middle;" />TikTok
+                    </a>
+                </div>
+            </div>
+            <!-- Card 2: Contact Form -->
+            <div style="background:rgba(20,24,34,0.82);border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.18);border:1.5px solid rgba(170,216,255,0.13);padding:2em 2.5em;max-width:420px;width:100%;display:flex;flex-direction:column;align-items:center;">
+                <form method="POST" action="https://formsubmit.co/print.this556@gmail.com" style="width:100%;display:flex;flex-direction:column;gap:1em;">
+                    <h3 style="color:#fff;text-align:center;margin:0 0 0.5em 0;">Contact Me</h3>
+                    <label for="viewerEmail" style="color:#eaf6ff;font-size:1em;">Your Email</label>
+                    <input type="email" id="viewerEmail" name="email" required placeholder="you@email.com" style="width:100%;padding:0.7em;border-radius:8px;border:1px solid #aad8ff;margin-bottom:0.5em;">
+                    <label for="viewerMsg" style="color:#eaf6ff;font-size:1em;">Message</label>
+                    <textarea id="viewerMsg" name="message" rows="4" required placeholder="Your message..." style="width:100%;padding:0.7em;border-radius:8px;border:1px solid #aad8ff;margin-bottom:0.5em;"></textarea>
+                    <button type="submit" style="width:100%;padding:0.8em;border-radius:8px;background:#aad8ff;color:#142022;font-weight:bold;border:none;cursor:pointer;">Send</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('dropdownMenu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                var dropdowns = document.getElementsByClassName('dropdown-menu');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
