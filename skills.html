@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills | Michael Hess Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: url('images/Lightning background (1)-optimized.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .blur-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(12,16,24,0.45);
+        }
+        main {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    <style>
+        body {
+            background: url('images/Lightning background (1)-optimized.webp') no-repeat center center fixed;
+            background-size: cover;
+            /* Remove heavy blur and overlays for speed */
+        }
+    </style>
+    <style>
+        .skills-bubble-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5em;
+            margin-top: 5em;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .skills-bubble {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(20,24,34,0.82);
+            box-shadow: 0 2px 18px rgba(0,0,0,0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.18s cubic-bezier(.4,1.4,.6,1.0);
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .skills-bubble:hover {
+            transform: scale(1.13);
+            background: rgba(34,48,68,0.92);
+        }
+        .skills-bubble-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #aad8ff;
+            z-index: 1;
+            transition: opacity 0.18s;
+        }
+        .skills-bubble-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            background: rgba(34,48,68,0.82);
+            color: #aad8ff;
+            z-index: 2;
+            transition: opacity 0.18s;
+            padding: 1em;
+            text-align: center;
+        }
+        .skills-bubble:hover .skills-bubble-overlay {
+            opacity: 1;
+        }
+        .skills-bubble-header {
+            font-size: 1.08em;
+            font-weight: bold;
+            text-align: center;
+        }
+        .skills-bubble {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="blur-bg"></div>
+    <div class="menu-container">
+        <button class="menu-btn" onclick="toggleMenu()">Menu &#9776;</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="skills.html">Skills</a>
+            <a href="certification.html">Certifications | Awards</a>
+            <a href="resume.html">Resume</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <main style="position:relative;z-index:1;">
+        <h1 style="color:#fff;text-align:center;margin-top:5em;">Skills</h1>
+        <div class="skills-bubble-container">
+            <div class="skills-bubble">
+                <img src="images/Inventor Logo.png" alt="Inventor" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">Autodesk Inventor</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/HTML logo better.webp" alt="HTML" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">HTML</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/bootstrap-logo.svg" alt="Bootstrap" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">Bootstrap</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/Fusion360_Logo.svg.png" alt="Fusion 360" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">Fusion 360</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/Blog-Image-Google-Lighthouse-1.webp" alt="Lighthouse" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">Google Lighthouse</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/css logo.png" alt="CSS" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">CSS</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/js-javascript-round-logo-icon-png-7017516947717339mnyf7eumy.png" alt="JavaScript" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">JavaScript</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/ISO_C++_Logo.svg.png" alt="C++" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">C++</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/C_Logo.png" alt="C" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">C</span></div>
+            </div>
+            <div class="skills-bubble">
+                <img src="images/photoshop logo.png" alt="Photoshop" class="skills-bubble-img" />
+                <div class="skills-bubble-overlay"><span class="skills-bubble-header">Photoshop</span></div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('dropdownMenu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                var dropdowns = document.getElementsByClassName('dropdown-menu');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

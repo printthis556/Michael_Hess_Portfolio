@@ -51,9 +51,11 @@
 .about-link {
     min-width: 220px;
     justify-content: center;
+     transition: transform 0.18s cubic-bezier(.4,1.4,.6,1.0);
 }
 .about-link:hover {
     color: #aad8ff;
+     transform: scale(1.08);
 }
 .about-link-logo {
     width: 28px;
