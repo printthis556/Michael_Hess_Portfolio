@@ -55,10 +55,18 @@
         <h1 style="color:#fff;text-align:center;margin-top:5em;">Resume</h1>
         <div style="display:flex;justify-content:center;align-items:center;margin-top:3em;">
             <div style="background:rgba(20,24,34,0.82);border-radius:18px;box-shadow:0 2px 16px rgba(0,0,0,0.22);border:2px solid rgba(170,216,255,0.18);padding:2em;max-width:520px;width:100%;display:flex;flex-direction:column;align-items:center;">
-                <img src="images/Michael_Hess_Remote_Resume_Seamless.png" alt="Resume" style="max-width:420px;width:100%;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.18);margin:0 auto;" />
+                <img id="resumeImg" src="images/12-10-25 reume screenshot.png" alt="Resume" style="max-width:420px;width:100%;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.18);margin:0 auto;cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
             </div>
         </div>
     </main>
+
+    <!-- Resume Modal -->
+    <div id="resumeModal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+        <div style="background:rgba(20,24,34,0.95);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.4);border:2px solid rgba(170,216,255,0.25);padding:2em;max-width:90vw;max-height:90vh;overflow:auto;position:relative;">
+            <button onclick="closeResumeModal()" style="position:absolute;top:15px;right:15px;background:rgba(170,216,255,0.2);border:1px solid rgba(170,216,255,0.4);color:#aad8ff;padding:0.5em 0.8em;border-radius:8px;font-size:1.2em;cursor:pointer;transition:background 0.2s;">✕</button>
+            <img src="images/12-10-25 reume screenshot.png" alt="Resume" style="max-width:100%;width:100%;border-radius:12px;display:block;" />
+        </div>
+    </div>
     <script>
         function toggleMenu() {
             var menu = document.getElementById('dropdownMenu');
@@ -73,6 +81,29 @@
                         openDropdown.style.display = 'none';
                     }
                 }
+            }
+        });
+
+        // Resume Modal Functions
+        document.getElementById('resumeImg').addEventListener('click', function() {
+            document.getElementById('resumeModal').style.display = 'flex';
+        });
+
+        function closeResumeModal() {
+            document.getElementById('resumeModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside the modal content
+        document.getElementById('resumeModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeResumeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeResumeModal();
             }
         });
     </script>
