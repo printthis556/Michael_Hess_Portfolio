@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <link rel="preload" as="image" href="images/Lightning background (1)-optimized.webp" />
-    <link rel="preload" as="image" href="images/Lightning background (1)-optimized.webp" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Michael Hess's Portfolio</title>
@@ -277,7 +276,7 @@
     <section id="about" class="section" aria-label="About Me">
         <div class="bio-wrap">
                     <article class="bio-card">
-                        <img src="images/The Best Profile Pic.jpg" alt="Profile picture of Michael Hess" class="profile-pic" />
+                        <img src="images/The Best Profile Pic.jpg" alt="Profile picture of Michael Hess" class="profile-pic" loading="lazy" decoding="async" />
                         <h2>About Me</h2>
                         <p class="about-bio">
 Hi, I’m Michael Hess — I work at the crossroads of IT, operations, and software, where small improvements drive big results. At Subaru of Fort Myers, I manage systems and vendors, cut vehicle check-in times by ~40%, and reduced service costs by ~15%.                        </p>
@@ -290,9 +289,9 @@ On the creative side, I run a TikTok channel featuring 3D prints, AutoCAD builds
                         </p>
                         <div class="about-links" style="margin-top:2.2em;">
                             <div class="about-links-heading">Links</div>
-                            <a href="https://www.linkedin.com/in/mike-hess-b53912117" class="about-link" target="_blank" rel="noopener"><img src="images/InBug-White.png" alt="Logo 2" class="about-link-logo" />LinkedIn</a>
-                            <a href="https://github.com/printthis556" class="about-link" target="_blank" rel="noopener"><img src="images/github-mark-white.png" alt="Logo 2" class="about-link-logo" />GitHub</a>
-                            <a href="https://www.tiktok.com/@printthis?is_from_webapp=1&sender_device=pc" class="about-link"><img src="images/TikTok-logo-CMYK-Stacked-white-simplified.png" alt="Logo 3" class="about-link-logo" />TikTok</a>
+                            <a href="https://www.linkedin.com/in/mike-hess-b53912117" class="about-link" target="_blank" rel="noopener"><img src="images/InBug-White.png" alt="Logo 2" class="about-link-logo" loading="lazy" decoding="async" />LinkedIn</a>
+                            <a href="https://github.com/printthis556" class="about-link" target="_blank" rel="noopener"><img src="images/github-mark-white.png" alt="Logo 2" class="about-link-logo" loading="lazy" decoding="async" />GitHub</a>
+                            <a href="https://www.tiktok.com/@printthis?is_from_webapp=1&sender_device=pc" class="about-link"><img src="images/TikTok-logo-CMYK-Stacked-white-simplified.png" alt="Logo 3" class="about-link-logo" loading="lazy" decoding="async" />TikTok</a>
                         </div>
                     </article>
         </div>
@@ -351,5 +350,37 @@ On the creative side, I run a TikTok channel featuring 3D prints, AutoCAD builds
             });
         })();
     </script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Michael Hess</div>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="index.html" aria-label="Home" data-label="Home">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L12 4l9 7.5v8.5a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+                    <span class="sr-only">Home</span>
+                </a>
+                <a href="projects.html" aria-label="Projects" data-label="Projects">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6a1 1 0 0 1 1 1v2h5a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1h5V5a1 1 0 0 1 1-1zm1 3h4V6h-4z"/></svg>
+                    <span class="sr-only">Projects</span>
+                </a>
+                <a href="skills.html" aria-label="Skills" data-label="Skills">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3a5 5 0 0 0-3.9 8.1L3 18.7 5.3 21l7.6-7.6A5 5 0 0 0 21 9.5l-4 2-2-2 2-4A5 5 0 0 0 14.5 3z"/></svg>
+                    <span class="sr-only">Skills</span>
+                </a>
+                <a href="certification.html" aria-label="Certifications" data-label="Certifications">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l5 2v4a7 7 0 0 1-5 6.7A7 7 0 0 1 7 9V5z"/><path d="M8 14l-1 7 5-3 5 3-1-7"/></svg>
+                    <span class="sr-only">Certifications</span>
+                </a>
+                <a href="resume.html" aria-label="Resume" data-label="Resume">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm8 1v4h4"/><path d="M8 12h8v1H8zm0 4h8v1H8z"/></svg>
+                    <span class="sr-only">Resume</span>
+                </a>
+                <a href="contact.html" aria-label="Contact" data-label="Contact">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm0 2l9 6 9-6v-1H3z"/></svg>
+                    <span class="sr-only">Contact</span>
+                </a>
+            </nav>
+            <div class="footer-meta">(c) 2026 Michael Hess. Built with HTML, CSS, and JavaScript.</div>
+        </div>
+    </footer>
 </body>
 </html>
